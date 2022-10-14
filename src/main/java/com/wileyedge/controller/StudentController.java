@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wileyedge.model.Student;
 import com.wileyedge.service.StudentService;
-import com.wileyedge.service.UserNotFoundException;
+import com.wileyedge.service.StudentNotFoundException;
 
 //@RestController = @Controller + @ResponseBody
 @RestController
@@ -44,7 +42,7 @@ public class StudentController {
 	public Student retrieveUser(@PathVariable int id) {
 		Student u = service.getStudent(id);
 		if (u == null) {
-			throw new UserNotFoundException("User ID " + id + " not found");
+			throw new StudentNotFoundException("User ID " + id + " not found");
 		} //if
 		return u;
 	}

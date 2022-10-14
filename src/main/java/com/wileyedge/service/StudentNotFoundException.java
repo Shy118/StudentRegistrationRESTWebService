@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND) //404
-public class UserNotFoundException extends RuntimeException {
+public class StudentNotFoundException extends RuntimeException {
 
-	public UserNotFoundException(String message) {
+	public StudentNotFoundException(String message) {
 		super(message);
 	}
 }

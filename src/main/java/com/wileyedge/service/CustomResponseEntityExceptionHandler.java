@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-// Catch exceptions
-//@ControllerAdvice
 @RestControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	
@@ -23,16 +21,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 		System.out.println("Inside handleAllExceptions");
 		ExceptionResponse expResp = new ExceptionResponse(new Date(),ex.getMessage(), "Detail Description of the Exception");
 		return expResp;
-//		return new ResponseEntity(expResp, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@ExceptionHandler(UserNotFoundException.class)
+	@ExceptionHandler(StudentNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public final ExceptionResponse handleUserNotFoundException(UserNotFoundException ex, WebRequest req) {
+	public final ExceptionResponse handleUserNotFoundException(StudentNotFoundException ex, WebRequest req) {
 		System.out.println("Inside handleUserNotFoundException");
-		ExceptionResponse expResp = new ExceptionResponse(new Date(),ex.getMessage(), "The requested User ID is not present in the system");
+		ExceptionResponse expResp = new ExceptionResponse(new Date(),ex.getMessage(), "The requested Student ID is not present in the system");
 		return expResp;
-		//		return new ResponseEntity(expResp, HttpStatus.NOT_FOUND);
 	}
 
 	@Override
