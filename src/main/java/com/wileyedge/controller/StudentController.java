@@ -32,22 +32,18 @@ public class StudentController {
 	private StudentService service;
 	
 	public StudentController() {
-		System.out.println("Inside default constructor of StudentController");
+
 	}
 
 	@GetMapping(path = "/student")
 	public List<Student> retrieveAllUsers() {
-		System.out.println("Inside retrieveAllUsers of StudentController");
 		return service.getAllStudents();
 	}
 	
 	@GetMapping(path = "/student/{id}")
 	public Student retrieveUser(@PathVariable int id) {
-		System.out.println("Inside retrieve of StudentController " + id);
 		Student u = service.getStudent(id);
-		
 		if (u == null) {
-			System.out.println("CustomException is being thrown");
 			throw new UserNotFoundException("User ID " + id + " not found");
 		} //if
 		return u;
@@ -55,35 +51,28 @@ public class StudentController {
 	
 	@GetMapping(path = "/student/{name}/{mobile}")
 	public Student retrieveStudentByNameAndMobile(@PathVariable String name,@PathVariable String mobile) {
-		System.out.println("Inside retrieveStudentByNameAndMobile of StudentController");
 		return service.getUserByNameAndMobile(name, mobile);
 	}
 	
 	@PutMapping(path = "/student/{id}")
 	public Student editStudent(@Valid @RequestBody Student s, @PathVariable String id, BindingResult result, Model model) {
-		System.out.println("Inside changeStudent of StudentController");
 		Student updatedStudent = s;
 		s.setId(Integer.parseInt(id));
-		System.out.println(updatedStudent);
 		return service.updateStudent(s);
 	}
 	
 	@PostMapping(path = "/student")
 	public Student createStudent(@Valid @RequestBody Student s, BindingResult result, Model model) {
-		System.out.println("Inside createUser of StudentController");
-		System.out.println(s);
 		return service.saveStudent(s);
 	}
 	
 	@DeleteMapping(path = "/student/{name}/{mobile}")
 	public void deleteStudentByNameAndMobile(@PathVariable String name,@PathVariable String mobile) {
-		System.out.println("Inside deleteStudentByNameAndMobile of StudentController");
 		service.removeStudentByNameAndMobile(name, mobile);
 	}
 	
 	@DeleteMapping(path = "/student/{id}")
 	public void deleteStudent(@PathVariable String id) {
-		System.out.println("Inside deleteStudent of StudentController");
 		service.removeStudent(Integer.parseInt(id));
 	}
 	
