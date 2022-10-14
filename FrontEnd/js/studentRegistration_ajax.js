@@ -17,17 +17,15 @@ $(document).ready(function () {
                     'Content-Type': 'application/json'
                 },'dataType': 'json',
                 success: function() {
-                    $('div#registrationMsg').empty().append('<p class="text-success">' + 'Registered Successfully !' + '</p>');
-                    
+                    $('div#registrationMsg').empty().append('<div class="alert alert-success" role="alert">Registered Successfully !</div>');                    
                 },
                 error: function () {
-                    $('div#registrationMsg').empty().append('<p class="text-danger">' + 'Registration Failed !' + '</p>');
-                    
+                    $('div#registrationMsg').empty().append('<div class="alert alert-danger" role="alert">Registration Failed !</div>');                    
                 }
             })
         }
         else {
-            $('div#registrationMsg').empty().append('<p class="text-danger">' + 'Registration Failed !' + '</p>');
+            $('div#registrationMsg').empty().append('<div class="alert alert-danger" role="alert">Registration Failed !</div>');  
         }
     });
 })
@@ -39,17 +37,17 @@ $(document).ready(function () {
             url: 'http://localhost:8080/student',
             success: function(studentArray) {
                 $('div#allStudents').empty();
+                var studentInfo = '<table class="table table-bordered table-striped table-hover"> <tr> <th>ID</th> <th>Name</th> <th>Age</th> <th>Mobile No</th> <th>Address</th> </tr>';
                 $.each(studentArray, function (index, student) {
-                    var studentInfo = '<p>';
-                    studentInfo += 'Student ID: ' + student.id+ '<br>';
-                    studentInfo += 'Name: ' + student.name + '<br>';
-                    studentInfo += 'Age: ' + student.age + '<br>';
-                    studentInfo += 'Mobile No: ' + student.mobile + '<br>';
-                    studentInfo += 'Address: ' + student.address + '<br>';
-                    studentInfo += '</p><hr>';
+                    
+                    studentInfo += '<tr> <td>' + student.id + '</td>';
+                    studentInfo += '<td>' + student.name + '</td>';
+                    studentInfo += '<td>' + student.age + '</td>';
+                    studentInfo += '<td>' + student.mobile + '</td>';
+                    studentInfo += '<td>' + student.address + '</td> </tr>';
                 
-                    $('div#allStudents').append(studentInfo);
-                })
+                });
+                $('div#allStudents').append(studentInfo);
             },
             error: function() {
                 alert('Error fetching students detail');
@@ -66,6 +64,7 @@ $(document).ready(function () {
         if (uname == 'admin' && pw == 'admin') {
             $("button#pills-admin-tab").show();
             $("button#pills-allStudents-tab").show();
+            $("button#pills-form-tab").show();
             $("button#pills-login-tab").hide();
             $("button#pills-profile-tab").hide();
             $('button#pills-admin-tab').click();
@@ -108,6 +107,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("button#adminSearch").click(function (event) {
         $('div#deleteMsg').empty().hide();
+        $('div#adminEditMsg').empty().hide();
         var id = $('input#adminFindById').val();
         if (id == '') {
             alert('Please enter a student ID');
@@ -117,17 +117,19 @@ $(document).ready(function () {
             type: 'GET',
             url: 'http://localhost:8080/student/' + id,
             success: function(student) {
-                $('td#studentIdAdmin').empty().append(student.id).show();
-                $('td#studentNameAdmin').empty().append(student.name).show();
-                $('td#studentAgeAdmin').empty().append(student.age).show();
-                $('td#studentMobileAdmin').empty().append(student.mobile).show();
-                $('td#studentAddressAdmin').empty().append(student.address).show();
+
+                $("input#studentIdAdmin").empty().val(student.id);
+                $("input#studentNameAdmin").empty().val(student.name);
+                $("input#studentAgeAdmin").empty().val(student.age);
+                $("input#studentMobileAdmin").empty().val(student.mobile);
+                $("input#studentAddressAdmin").empty().val(student.address);
 
                 $("table#studentDetailAdmin").show();
                 $("button#adminDelete").show();
+                $("button#adminEdit").show();
             },
             error: function() {
-                alert('You are not registered as a student, please proceed to submit your registration form');
+                alert('Student ID ' + id + ' not found !');
             }
             })
         }
@@ -137,22 +139,23 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("button#adminDelete").click(function (event) {
-        var id = $('td#studentIdAdmin').text();
+        var id = $('input#studentIdAdmin').val();
         $.ajax({
             type: 'DELETE',
             url: 'http://localhost:8080/student/' + id,
             success: function() {
-                $('div#deleteMsg').empty().append('<p class="text-success">' + 'Student ' + id + ' deleted successfully !' + '</p>').show();
+                $('div#deleteMsg').empty().append('<div class="alert alert-success" role="alert">Deleted successfully !</div>').show();                    
                 $("button#adminDelete").hide();
+                $("button#adminEdit").hide();
                 $("table#studentDetailAdmin").hide();
+                $('div#adminEditMsg').hide();
             },
             error: function() {
-                $('div#deleteMsg').empty().append('<p class="text-danger">' + 'Failed to delete Student ' + id + ' !' + '</p>').show();
+                $('div#deleteMsg').empty().append('<div class="alert alert-danger" role="alert">Failed to delete Student !</div>').show();                    
             }
         })
     })
 })
-
 
 $(document).ready(function () {
     $("button#studentConfirm").click(function (event) {
@@ -205,11 +208,11 @@ $(document).ready(function () {
             },'dataType': 'json',
             success: function(student) {
 
-                $('input#studentId').empty().val(student.id);
-                $('input#studentName').empty().val(student.name);
-                $('input#studentAge').empty().val(student.age);
-                $('input#studentMobile').empty().val(student.mobile);
-                $('input#studentAddress').empty().val(student.address);
+                $("input#studentId").empty().val(student.id);
+                $("input#studentName").empty().val(student.name);
+                $("input#studentAge").empty().val(student.age);
+                $("input#studentMobile").empty().val(student.mobile);
+                $("input#studentAddress").empty().val(student.address);
 
                 $("input#studentName").attr("readonly", true)
                 $("input#studentName").attr("placeholder", $("input#studentName").val());
@@ -232,11 +235,99 @@ $(document).ready(function () {
                 $("button#studentEdit").show();
                 $("button#studentLogout").show();
 
-                $('div#editMsg').empty().append('<p class="text-success">' + 'Edited Successfully !</p>').show();
+                $("div#editMsg").empty().append('<div class="alert alert-success" role="alert">Edited Successfully !</div>').show();                    
             },
 
             error: function() {
-                $('div#editMsg').empty().append('<p class="text-danger">' + 'Failed to edit your detail</p>').show();
+                $("div#editMsg").empty().append('<div class="alert alert-danger" role="alert">Failed to edit your detail !</div>').show();                    
+            }
+        })
+    })
+})
+
+$(document).ready(function () {
+    $("button#adminConfirm").click(function (event) {
+        var id = $("input#studentIdAdmin").val();
+
+        if ($('input#studentNameAdmin').val().length != 0) {
+            var name = $("input#studentNameAdmin").val();
+        }
+
+        else {
+            var name = $("input#studentNameAdmin").attr('placeholder');
+        }
+
+        if ($('input#studentAgeAdmin').val().length != 0) {
+            var age = $("input#studentAgeAdmin").val();
+        }
+
+        else {
+            var age = $("input#studentAgeAdmin").attr('placeholder');
+        }
+
+        if ($('input#studentMobileAdmin').val().length != 0) {
+            var mobile = $("input#studentMobileAdmin").val();
+        }
+
+        else {
+            var mobile = $("input#studentMobileAdmin").attr('placeholder');
+        }
+
+        if ($('input#studentAddressAdmin').val().length != 0) {
+            var address = $("input#studentAddressAdmin").val();
+        }
+
+        else {
+            var address = $("input#studentAddressAdmin").attr('placeholder');
+        }
+
+        $.ajax({
+            type: 'PUT',
+            url: 'http://localhost:8080/student/' + id,
+            data: JSON.stringify({
+                name: name,
+                age: age,
+                mobile: mobile,
+                address: address,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },'dataType': 'json',
+            success: function(student) {
+
+                $("input#studentIdAdmin").empty().val(student.id);
+                $("input#studentNameAdmin").empty().val(student.name);
+                $("input#studentAgeAdmin").empty().val(student.age);
+                $("input#studentMobileAdmin").empty().val(student.mobile);
+                $("input#studentAddressAdmin").empty().val(student.address);
+
+                $("input#studentNameAdmin").attr("readonly", true)
+                $("input#studentNameAdmin").attr("placeholder", $("input#studentNameAdmin").val());
+                $("input#studentNameAdmin").attr("style","border-style: none;");
+
+                $("input#studentAgeAdmin").attr("readonly", true)
+                $("input#studentAgeAdmin").attr("placeholder", $("input#studentAgeAdmin").val());
+                $("input#studentAgeAdmin").attr("style","border-style: none;");
+
+                $("input#studentMobileAdmin").attr("readonly", true)
+                $("input#studentMobileAdmin").attr("placeholder", $("input#studentMobileAdmin").val());
+                $("input#studentMobileAdmin").attr("style","border-style: none;");
+
+                $("input#studentAddressAdmin").attr("readonly", true)
+                $("input#studentAddressAdmin").attr("placeholder", $("input#studentAddressAdmin").val());
+                $("input#studentAddressAdmin").attr("style","border-style: none;");
+
+                $("button#adminConfirm").hide();
+                $("button#adminCancel").hide();
+                $("button#adminEdit").show();
+                $("button#adminLogout").show();
+
+                $('div#adminEditMsg').empty().append('<div class="alert alert-success" role="alert">Edited Successfully !</div>').show();                    
+            },
+
+            error: function() {
+                $('div#adminEditMsg').empty().append('<div class="alert alert-danger" role="alert">Edit Failed !</div>').show();                    
             }
         })
     })
@@ -271,6 +362,34 @@ $(document).ready(function () {
 })
 
 $(document).ready(function () {
+    $("button#adminEdit").click(function (event) {
+        
+        $("button#adminLogout").hide();
+        $("button#adminEdit").hide();
+        $("button#adminConfirm").show();
+        $("button#adminCancel").show();
+        $('div#adminEditMsg').empty().hide();
+
+        $("input#studentNameAdmin").attr("readonly", false)
+        $("input#studentNameAdmin").attr("placeholder", $("input#studentNameAdmin").val());
+        $("input#studentNameAdmin").attr("style","border-style: solid 1px;");
+
+        $("input#studentAgeAdmin").attr("readonly", false)
+        $("input#studentAgeAdmin").attr("placeholder", $("input#studentAgeAdmin").val());
+        $("input#studentAgeAdmin").attr("style","border-style: solid 1px;");
+
+        $("input#studentMobileAdmin").attr("readonly", false)
+        $("input#studentMobileAdmin").attr("placeholder", $("input#studentMobileAdmin").val());
+        $("input#studentMobileAdmin").attr("style","border-style: solid 1px;");
+
+        $("input#studentAddressAdmin").attr("readonly", false)
+        $("input#studentAddressAdmin").attr("placeholder", $("input#studentAddressAdmin").val());
+        $("input#studentAddressAdmin").attr("style","border-style: solid 1px;");
+
+    })
+})
+
+$(document).ready(function () {
     $("button#studentCancel").click(function (event) {
         $("button#studentCancel").hide();
         $("button#studentConfirm").hide();
@@ -300,19 +419,56 @@ $(document).ready(function () {
 })
 
 $(document).ready(function () {
+    $("button#adminCancel").click(function (event) {
+        $("button#adminCancel").hide();
+        $("button#adminConfirm").hide();
+        $("button#adminLogout").show();
+        $("button#adminEdit").show();
+
+        $("input#studentNameAdmin").attr("readonly", true)
+        $("input#studentNameAdmin").val($("input#studentNameAdmin").attr('placeholder'));
+        $("input#studentNameAdmin").attr("style","border: none;");
+
+
+        $("input#studentAgeAdmin").attr("readonly", true)
+        $("input#studentAgeAdmin").val($("input#studentAgeAdmin").attr('placeholder'));
+        $("input#studentAgeAdmin").attr("style","border: none;");
+
+
+        $("input#studentMobileAdmin").attr("readonly", true)
+        $("input#studentMobileAdmin").val($("input#studentMobileAdmin").attr('placeholder'));
+        $("input#studentMobileAdmin").attr("style","border: none;");
+
+
+        $("input#studentAddressAdmin").attr("readonly", true)
+        $("input#studentAddressAdmin").val($("input#studentAddressAdmin").attr('placeholder'));
+        $("input#studentAddressAdmin").attr("style","border: none;");
+
+    })
+})
+
+$(document).ready(function () {
     $("button#studentLogout").click(function (event) {
         $("button#pills-profile-tab").hide();
         $("button#pills-login-tab").show();
         $("button#pills-login-tab").click();
-        $('div#editMsg').empty().hide();
+        $("div#editMsg").empty().hide();
     })
 })
 
 $(document).ready(function () {
     $("button#adminLogout").click(function (event) {
+        $("table#studentDetailAdmin").hide();
+        $("input#adminFindById").val("");
+        $("div#adminEditMsg").empty();
+        $("div#deleteMsg").empty();
+        $("button#adminEdit").hide();
+        $("button#adminDelete").hide();
         $("button#pills-admin-tab").hide();
         $("button#pills-allStudents-tab").hide();
+        $("button#pills-form-tab").hide();
         $("button#pills-login-tab").show();
-        $('button#pills-login-tab').click();
+        $("button#pills-login-tab").click();
+        
     })
 })

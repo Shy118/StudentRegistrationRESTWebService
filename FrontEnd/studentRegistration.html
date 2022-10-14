@@ -23,243 +23,266 @@
 	</head>
 	
 	<body>
-
         
-		<div class="d-flex justify-content-center" style="margin-top: 100px;">
+        <img src="resources/java_rest_icon.png" alt="" style="height: 100px; width: auto; margin-left: 25px; margin-top: 25px">
+            <h2 class="d-flex justify-content-center">Student Portal</h2><hr>
             
-			<div class="col-md-2"></div>
+        <div id="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                    
 
-			<div class="col-md-8">
-                <h2 class="d-flex justify-content-center">Student Portal</h2><hr>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-form-tab" data-bs-toggle="pill" data-bs-target="#pills-form" type="button" role="tab" aria-controls="pills-form" aria-selected="true">Registration Form</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login" aria-selected="true">Login</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true" style="display: none">Profile</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill" data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin" aria-selected="true" style="display: none">Admin</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-allStudents-tab" data-bs-toggle="pill" data-bs-target="#pills-allStudents" type="button" role="tab" aria-controls="pills-allStudents" aria-selected="false" ria-disabled="true" style="display: none">All Students</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
-                    <table class="table table-bordered">
-                        <form role="form" modelAttribute="std">     
-                            <tr>
-                            <td colspan="1">
-                                <label for="name">
-                                Enter Name
-                                </label>
-                            </td>
-                                
-                            <td colspan="2"><input type="text" id="name" size="50" required/></td>
-                            </tr>
-                            <tr>
-                            <td colspan="1">
-                                <label for="age">
-                                Enter Age
-                                </label>
-                            </td>
-                                
-                            <td colspan="2"><input type="text"  id="age" size="50" required/></td>
-                            </tr>
-                            <tr>
-                            <td colspan="1">
-                                <label for="mobilenum">
-                                Enter Mobile No.
-                                </label>
-                            </td>
+                <div class="d-flex justify-content-center">
+                    
+                    <div class="col-md-6">
+                        
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login" aria-selected="true">Login</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill" data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin" aria-selected="true" style="display: none">Admin</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-form-tab" data-bs-toggle="pill" data-bs-target="#pills-form" type="button" role="tab" aria-controls="pills-form" aria-selected="true" style="display: none">Create</button>
+                        </li> 
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true" style="display: none">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-allStudents-tab" data-bs-toggle="pill" data-bs-target="#pills-allStudents" type="button" role="tab" aria-controls="pills-allStudents" aria-selected="false" ria-disabled="true" style="display: none">All</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+                            <div class="border border-dark rounded">
+                                <table class="table-active" align="center" height="500">  
+                                    <form role="form" modelAttribute="login"> 
+                                        <tr>
+                                            <td>
+                                                <label for="name">
+                                                    username:
+                                                </label><br>
+                                        <input type="text" id="username" size="50"/><br><br><br>
+
+                                            <label for="age">
+                                                    password:
+                                            </label><br>
+                                        <input type="password" id="password" size="50"/><br><br><br><br>
+                                        <div align="center">
+                                            <button type="button" id="login" class="btn btn-primary">Login</button>
+                                        </div>                           
+                                            </td>
+                                        </tr>
+                                    </form>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- data-target -->
+                        <div class="tab-pane fade" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
+                            <table class="table table-bordered">
+                                <form role="form" modelAttribute="std">     
+                                    <tr>
+                                    <td colspan="1">
+                                        <label for="name">
+                                        Enter Name
+                                        </label>
+                                    </td>
+                                        
+                                    <td colspan="2"><input type="text" id="name" size="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="1">
+                                        <label for="age">
+                                        Enter Age
+                                        </label>
+                                    </td>
+                                        
+                                    <td colspan="2"><input type="text"  id="age" size="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="1">
+                                        <label for="mobilenum">
+                                        Enter Mobile No.
+                                        </label>
+                                    </td>
+                                    
+                                    <td colspan="2"><input type="text" id="mobile" size="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="1">
+                                        <label for="address">
+                                            Enter Address
+                                        </label>
+                                    </td>
+                                    <td colspan="2"><input type="text" id="address" size="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2">
+                                        <button type="button" id="submit" class="btn btn-secondary">Submit</input>
+                                    </td>
+                                    <td colspan="1">
+                                        <button type="reset" class="btn btn-secondary">Reset</input>
+                                    </td>
+                                    </tr>
+                                </form>
+                                <div id="registrationMsg"></div>
+                            </table>
+                        </div>
                             
-                            <td colspan="2"><input type="text" id="mobile" size="50" required/></td>
-                            </tr>
-                            <tr>
-                            <td colspan="1">
-                                <label for="address">
-                                    Enter Address
-                                </label>
-                            </td>
-                            <td colspan="2"><input type="text" id="address" size="50" required/></td>
-                            </tr>
-                            <tr>
-                            <td colspan="2">
-                                <button type="button" id="submit" class="btn btn-secondary">Submit</input>
-                            </td>
-                            <td colspan="1">
-                                <button type="reset" class="btn btn-secondary">Reset</input>
-                            </td>
-                            </tr>
-                        </form>
-                        <div id="registrationMsg"></div>
-                 </table>
-                </div>
-                <!-- data-target -->
-                <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-                    <div class="border border-dark rounded">
-                        <table class="table-active" align="center" height="250">  
-                            <form role="form" modelAttribute="login"> 
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <table id="loginDetail" class="table table-bordered">
+                                <form role="form" modelAttribute="std">
                                 <tr>
                                     <td>
-                                        <label for="name">
-                                            username:
-                                        </label><br>
-                                <input type="text" id="username" size="50"/><br><br><br>
-
-                                    <label for="age">
-                                            password:
-                                    </label><br>
-                                <input type="password" id="password" size="50"/><br><br>
-                                <div align="center">
-                                    <button type="button" id="login" class="btn btn-primary">Login</button>
-                                    <button class="btn btn-secondary" type="reset">Reset</button>
-                                </div>
-                                
+                                        <label for="id">
+                                            Student ID:
+                                        </label>
                                     </td>
-                                
+                                    
+                                    <td><input type="text" id="studentId" style="border: none;" size="50" readonly required/></td>
                                 </tr>
-                            </form>
-                        </table>
+                                <tr>
+                                    <td colspan="1">
+                                        <label for="name">
+                                            Name:
+                                        </label>
+                                    </td>
+                                    
+                                    <td><input type="text" id="studentName" style="border: none;" size="50" readonly required/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="age">
+                                            Age:
+                                        </label>
+                                    </td>
+                                    
+                                    <td><input type="text" id="studentAge" style="border: none;" size="50" readonly required/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mobile">
+                                            Mobile No:
+                                        </label>
+                                    </td>
+                                    
+                                    <td id><input type="text" id="studentMobile" style="border: none;" size="50" readonly required/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="address">
+                                            Address:
+                                        </label>
+                                    </td>
+
+                                    <td id><input type="text" id="studentAddress" style="border: none;" size="50" readonly required/></td>
+                                </tr>
+                                </form> 
+                                
+                            </table>
+
+                            <div id="editMsg"></div>
+
+                            <button type="button" id="studentLogout" class="btn btn-secondary">Logout</button>
+
+                            <button type="button" id="studentEdit" class="btn btn-secondary">Edit</button>
+
+                            <button type="button" id="studentConfirm" class="btn btn-secondary" style="display: none">Confirm</button>
+
+                            <button type="button" id="studentCancel" class="btn btn-secondary" style="display: none">Cancel</button>
+
+                        </div>
+                            
+                        <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
+                            <h2>Admin mode: enabled
+                            <button type="button" id="adminLogout" class="btn btn-secondary">Logout</button></h2>
+                            <label for="mobile">
+                                Search Student ID:
+                            </label>
+
+                            <input type="search" id="adminFindById"/>
+                            
+                            <button id="adminSearch" type="button" class="btn btn-info">Search</button><br><hr>
+
+                            <table id="studentDetailAdmin" class="table table-bordered" style="display: none"> 
+                                <form role="form" modelAttribute="std">
+                                    <tr>
+                                        <td>
+                                            <label for="id">
+                                                Student ID:
+                                            </label>
+                                        </td>
+                                        
+                                        <td><input type="text" id="studentIdAdmin" style="border: none;" size="50" readonly required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">
+                                            <label for="name">
+                                                Name:
+                                            </label>
+                                        </td>
+                                        
+                                        <td><input type="text" id="studentNameAdmin" style="border: none;" size="50" readonly required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="age">
+                                                Age:
+                                            </label>
+                                        </td>
+                                        
+                                        <td><input type="text" id="studentAgeAdmin" style="border: none;" size="50" readonly required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="mobile">
+                                                Mobile No:
+                                            </label>
+                                        </td>
+                                        
+                                        <td><input type="text" id="studentMobileAdmin" style="border: none;" size="50" readonly required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="address">
+                                                Address:
+                                            </label>
+                                        </td>
+
+                                        <td><input type="text" id="studentAddressAdmin" style="border: none;" size="50" readonly required/></td>
+                                    </tr>
+                                </form>
+
+                            </table>
+
+                            <div id="deleteMsg"></div>
+                            <div id="adminEditMsg"></div>
+                            
+                            <button type="button" id="adminDelete" class="btn btn-danger" style="display: none">Delete</button>
+                            
+                            <button type="button" id="adminEdit" class="btn btn-secondary" style="display: none">Edit</button>
+
+                            <button type="button" id="adminConfirm" class="btn btn-secondary" style="display: none">Confirm</button>
+
+                            <button type="button" id="adminCancel" class="btn btn-secondary" style="display: none">Cancel</button><br>
+
+                        </div>
+                    
+                        <div class="tab-pane fade" id="pills-allStudents" role="tabpanel" aria-labelledby="pills-allStudents-tab">
+                            <div id="allStudents"></div>
+                        </div>
                     </div>
-                </div>
-                    
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <table id="loginDetail" class="table table-bordered">
-                        <form role="form" modelAttribute="std">
-                        <tr>
-                            <td>
-                                <label for="id">
-                                    Student ID:
-                                </label>
-                            </td>
-                            
-                            <td><input type="text" id="studentId" style="border: none;" size="50" readonly required/></td>
-                        </tr>
-                         <tr>
-                            <td colspan="1">
-                                <label for="name">
-                                    Name:
-                                </label>
-                            </td>
-                             
-                            <td><input type="text" id="studentName" style="border: none;" size="50" readonly required/></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                <label for="age">
-                                    Age:
-                                </label>
-                            </td>
-                            
-                            <td><input type="text" id="studentAge" style="border: none;" size="50" readonly required/></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                <label for="mobile">
-                                    Mobile No:
-                                </label>
-                            </td>
-                             
-                             <td id><input type="text" id="studentMobile" style="border: none;" size="50" readonly required/></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                <label for="address">
-                                    Address:
-                                </label>
-                            </td>
-
-                            <td id><input type="text" id="studentAddress" style="border: none;" size="50" readonly required/></td>
-                         </tr>
-                        </form> 
-                    </table>
-
-                    <div id="editMsg"></div>
-
-                    <button type="button" id="studentLogout" class="btn btn-secondary">Logout</button>
-
-                    <button type="button" id="studentEdit" class="btn btn-secondary">Edit</button>
-
-                    <button type="button" id="studentConfirm" class="btn btn-secondary" style="display: none">Confirm</button>
-
-                    <button type="button" id="studentCancel" class="btn btn-secondary" style="display: none">Cancel</button>
-
-                </div>
-                    
-                <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
-                    <h2>Admin mode: enabled</h2>
-                    <label for="mobile">
-                        Search Student ID:
-                    </label>
-
-                    <input type="text" id="adminFindById"/>
-                    <button id="adminSearch" type="button" class="btn btn-info">Search</button><br><hr>
-
-                    <table id="studentDetailAdmin" class="table table-bordered" style="display: none"> 
-                        <tr>
-                            <td>
-                                <label for="id">
-                                    Student ID:
-                                </label>
-                            </td>
-                            
-                            <td id="studentIdAdmin"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">
-                                <label for="name">
-                                    Name:
-                                </label>
-                            </td>
-                            
-                            <td id="studentNameAdmin"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="age">
-                                    Age:
-                                </label>
-                            </td>
-                            
-                            <td id="studentAgeAdmin"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="mobile">
-                                    Mobile No:
-                                </label>
-                            </td>
-                            
-                            <td id="studentMobileAdmin"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="address">
-                                    Address:
-                                </label>
-                            </td>
-
-                            <td id="studentAddressAdmin"></td>
-                        </tr>
-                        <div id="deleteMsg"></div>
-                    </table>
-                    
-                    <button id="adminDelete" type="button" class="btn btn-danger" style="display: none">Delete</button><br><br>
-
-                    <button type="button" id="adminLogout" class="btn btn-secondary">Logout</button>
-                </div>
-               
-                <div class="tab-pane fade" id="pills-allStudents" role="tabpanel" aria-labelledby="pills-allStudents-tab">
-                    <div id="allStudents"></div>
-                </div>
-				
-			</div>
-			<div class="col-md-2"></div>
+                <div class="col-md-3"></div>
+            </div>
 		</div>
+                   
+        <footer class="fixed-bottom footer mt-auto">
+            <div class="text-center text-white" style="background-color: #0a4275;">
+                <form>Done By: Hong Yew Sia  <button type="submit" onclick="window.open('https://github.com/Shy118')" class="btn bg-transparent" style="font-size:36px"><i class="fa fa-github"></i></button><br></form>
+            </div>
+        </footer> 
 	</body>
+    
+
 </html>
