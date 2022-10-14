@@ -3,6 +3,9 @@ Basic REST API Web Service performing CRUD operation using JpaRepository via Aja
 
 url: 'http://localhost:8080/'
 
+Datasource: jdbc:mysql://localhost:3306/student
+Entity: student
+
 ## Landing page: Login
 ### Admin login
 
