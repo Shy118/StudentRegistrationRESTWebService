@@ -1,7 +1,7 @@
 # StudentRegistrationRESTWebService
 Basic REST API Web Service performing CRUD operation using JpaRepository via Ajax call
 
-url: 'http://localhost:8080/'
+url: http://localhost:8080/
 
 Datasource: jdbc:mysql://localhost:3306/student
 
