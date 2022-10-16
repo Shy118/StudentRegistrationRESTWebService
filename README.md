@@ -13,6 +13,6 @@ Entity: student
 * username: admin | password: admin (In memory verification)
 * Able to perform 'Get' 'PUT' 'POST' 'DELETE' ajax call on students data
 
-###Student login
+### Student login
 * username: name | password: mobile (Databse Verification)
 * Able to perform only 'GET' 'PUT' ajax call on its own data
